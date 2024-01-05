@@ -30,9 +30,12 @@ const Login = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen relative">
+        <div className="flex justify-center items-center h-screen relative overflow-hidden">
+            <div className="absolute -z-[100] w-[500rem] h-[500rem] bg-red-500 -top-[450rem] -left-[320rem] rounded-full shadow-2xl"></div>
+            <div className="absolute -z-[200] w-[500rem] h-[500rem] bg-red-400/80 -top-[440rem] -left-[315rem] rounded-full shadow-2xl"></div>
+            <h1 className="text-[5rem] font-extrabold absolute top-10 text-white">YourMart</h1>
             <div className="flex flex-col bg-red-100 items-center h-[20rem] px-10 rounded-xl">
-                <h1 className=" text-3xl py-5 font-bold">Login</h1>
+                <h1 className="text-3xl py-5 font-bold">Login</h1>
                 {errorMsg && (
                     <p className="text-[0.8rem] text-red-600 font-bold absolute mt-[17rem]">
                         *{errorMsg}*
@@ -64,7 +67,7 @@ const Login = () => {
                 </label>
                 <button
                     type="submit"
-                    className="w-full bg-red-300 mt-8 rounded-full h-8 text-white/85 font-bold text-[1.2rem]"
+                    className="w-full bg-red-500 mt-8 rounded-full h-8 text-white/85 font-bold text-[1.2rem]"
                     onClick={handleSubmit}
                 >
                     {loading ?
