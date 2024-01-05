@@ -4,6 +4,7 @@ import { fetchProducts } from "../api/api";
 import Product from "./Product";
 import { FaFilter } from "react-icons/fa";
 import Cart from "./Cart";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -16,14 +17,24 @@ const Home = () => {
     const [cartClick, setCartClick] = useState(false);
     const [cartCount, setCartCount] = useState(0);
 
-    useEffect(() => {
+    const navigate = useNavigate()
+
+    const fetchProfile = () => {
+        const storedProfile = localStorage.getItem("profile");
+        if (!storedProfile) {
+            navigate("/login");
+        } 
+      };
+      
+      useEffect(() => {
+        fetchProfile();
         const fetchProduct = async () => {
-            const allProducts = await fetchProducts();
-            setProducts(allProducts.products);
-            setFilteredProducts(allProducts.products);
+          const allProducts = await fetchProducts();
+          setProducts(allProducts.products);
+          setFilteredProducts(allProducts.products);
         };
         fetchProduct();
-    }, []);
+      }, []);
 
     const handleSearch = (term) => {
         setSearchTerm(term);
@@ -64,8 +75,8 @@ const Home = () => {
     };
 
     const handleCartClick = (event) => {
-        if(event.target.id === "head") {
-            setCartClick(false)
+        if (event.target.id === "head") {
+            setCartClick(false);
         } else {
             setCartClick(!cartClick);
         }

@@ -23,7 +23,7 @@ const Login = () => {
             setErrorMsg(response.error);
         }
         if (response) {
-            localStorage.setItem("profile", response);
+            localStorage.setItem("profile", JSON.stringify(response));
             setLoading(!loading);
             navigate("/home");
         }
